@@ -4,6 +4,7 @@ from flask_login import LoginManager, login_user, login_required, logout_user, c
 from app.db_handler import Users, Files
 from app import utils
 from datetime import datetime
+from passlib.apps import custom_app_context as pwd_context
 
 import pytz
 import re
@@ -27,7 +28,6 @@ def load_user(user_id):
 
 @app.route('/login', methods=['POST'])
 def login():
-    # TODO: Password encryption not done still
     """
     Perform login based on the user name and password provided
     password is encrypted and stored in the database
@@ -38,7 +38,7 @@ def login():
         _password = req['password']
 
         user = Users.query.filter_by(email_id=_email_id).first()
-        if user and user.password == _password:
+        if user and pwd_context.verify(_password, user.password):
             login_user(user)
             status = True
             print(current_user)
@@ -57,13 +57,7 @@ def logout():
 
 @app.route('/register', methods=['POST'])
 def register_user():
-    # Encrypt user password before saving it to the database.
-    """
-    user registers the first time by giving details
-    details are saved in the user table in the database
-    """
     if request.method == 'POST':
-
         req = request.json
         print("Received data:", req)
         email = req['email_id']
@@ -81,7 +75,8 @@ def register_user():
             return jsonify({'message': 'Invalid format for an email address', 'code': '201', 'success': status})
         else:
             print(email, password, firstname, user_role)
-            new_user = Users(email, password, firstname, lastname, user_role)
+            password_hash = pwd_context.encrypt(password)
+            new_user = Users(email, password_hash, firstname, lastname, user_role)
             db.session.add(new_user)
             db.session.commit()
             status = True
@@ -89,11 +84,14 @@ def register_user():
 
 
 @app.route('/add_file', methods=['POST'])
+@login_required
 def upload_file():
     if request.method != 'POST':
         return
 
     file = request.files['file']
+    _desc = request.form['description']
+    _current_user_id = current_user.user_id 
     status = False
 
     if file is None or file.filename == '':
@@ -113,9 +111,6 @@ def upload_file():
         return jsonify({'message': msg, 'code': '201', 'sucess': status})
 
     _filename = utils.secure_filename(file.filename)
-    _desc = "testing"
-    _current_user_id = 1  # TODO: update the user_id
-
     new_file = Files(_filename, _desc, file_url,
                      _current_user_id, datetime.now(pt_timezone))
     try:
@@ -224,6 +219,6 @@ def delete_file(file_id):
 
     if current_user.user_id != file_user_id:
         print("got here")
-        # may be trigger SNS
+        # maybe trigger SNS
 
     return jsonify({'message': 'File deleted successfully', 'code': '200', 'success': True})
