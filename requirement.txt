@@ -1,0 +1,12 @@
+boto3==1.28.62
+Flask==2.3.3
+Flask-Cors==4.0.0
+Flask-Login==0.6.2
+Flask-MySQL==1.5.2
+Flask-OAuth==0.12
+Flask-SQLAlchemy==3.1.1
+passlib==1.7.4
+requests==2.31.0
+s3transfer==0.7.0
+SQLAlchemy==2.0.21
+Werkzeug==2.3.7
