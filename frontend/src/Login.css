@@ -1,0 +1,97 @@
+body {
+    margin: 0;
+    font-family: 'Russo One', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    padding-bottom: 15px;
+}
+
+code, pre {
+    font-family: 'JetBrains Mono', Consolas, 'Courier New', monospace;
+}
+
+.header-title {
+    font-family: 'Russo One', sans-serif;
+    font-size: 3em;
+    margin-left: 0.53em;
+    vertical-align: center;
+    line-height: 1.7;
+}
+
+.detail-container {
+    margin-top: 15px;
+}
+
+.rdt_TableRow {
+    font-family: 'JetBrains Mono', Consolas, 'Courier New', monospace;
+}
+
+.fullscreen {
+    background: linear-gradient(180deg, #a690f5 0%, #231069 100%);
+    padding: 25px;
+    color: white;
+    justify-content: center;
+    height: 100vh;
+}
+
+.fullscreen .row {
+    justify-content: center;
+}
+
+.fullscreen h1 {
+    font-size: 64pt;
+}
+
+.fullscreen-body {
+    margin-top: 1em;
+}
+
+.view-files {
+    margin-top: 90px;
+}
+
+.fullscreen form {
+    margin: 25px;
+    margin-top: 60px;
+    width: 400px;    
+}
+
+.fullscreen form input {
+    width: 400px;
+}
+
+#user-text {
+    margin: 30px 0; 
+}
+
+#login-button{
+    width: 400px;
+    margin: 15px 0;    
+    flex-direction: row;
+    justify-content: center;    
+    display: flex;
+}
+
+.fullscreen a {
+    color: #0b0b0b;
+}
+
+.fullscreen pre {
+    color: #bbb;
+}
+
+.errorMessage {
+    color: deeppink;
+}
+
+.actions-tab {
+    margin-top: 50px;
+}
+.actions-tab p {
+    font-family: 'JetBrains Mono', Consolas, 'Courier New', monospace;
+}
+
+#controls-row {
+    margin-left: -30px;
+    margin-right: -30px;
+}
