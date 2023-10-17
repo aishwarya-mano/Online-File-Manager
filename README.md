@@ -6,17 +6,17 @@ The Online File Manager allows users to  easily add, view, edit, and delete file
 * FrontEnd: React JS
 * Backend: Python (Flask)
 * Cloud Technologies:
- * EC2
- * Elastic Load Balancer
- * AutoScaling Group
- * Lambda
- * CloudWatch
- * SNS
- * S3
- * S3 Transfer Acceleration
- * cloudFront
- * RDS
- * Route 53
+    * EC2
+    * Elastic Load Balancer
+    * AutoScaling Group
+    * Lambda
+    * CloudWatch
+    * SNS
+    * S3
+    * S3 Transfer Acceleration
+    * cloudFront
+    * RDS
+    * Route 53
    
 ## Demo Video
 https://youtu.be/jPGe-ZTiy8U?feature=shared
